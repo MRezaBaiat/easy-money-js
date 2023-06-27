@@ -34,14 +34,20 @@ But if you need to use the conversions , you will need to initialize the rate so
 ```typescript
 import { setRateSource } from "easy-money-js";
 
-setRateSource(async (pair)=> {
-  if(pair === 'EUR/GBP'){
-    return 2;
+setRateSource({
+  getRate: async (pair)=> {
+    if(pair === 'EUR/GBP'){
+      return 2;
+    }
+    return 0.5;
   }
-  return 1;
 })
 
-(await money<USD>('100','EUR').convertTo('GBP')).value(); //200
+(await money('100','EUR').convertTo('GBP')).value(); //200
+
+(await money('100','GBP')
+  .add('150','EUR'))
+  .value() // 400
 
 ```
 

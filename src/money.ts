@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import BigDecimal from 'js-big-decimal';
 import { RoundingModes } from 'js-big-decimal/dist/node/roundingModes';
 import { reversePair } from './utils';
