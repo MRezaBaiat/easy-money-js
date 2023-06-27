@@ -14,6 +14,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./src/lock.decorator"), exports);
-__exportStar(require("./src/lock.module"), exports);
-__exportStar(require("./src/lock.service"), exports);
+exports.setRateSource = void 0;
+const money_1 = require("./src/money");
+__exportStar(require("./src/money"), exports);
+function setRateSource(rateSource) {
+    money_1.Money.rateSource = rateSource;
+}
+exports.setRateSource = setRateSource;
