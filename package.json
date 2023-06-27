@@ -1,6 +1,6 @@
 {
   "name": "easy-money-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A tool to simplify doing (big) money maths and converting them into different currencies",
   "author": "Reza Baiat",
   "private": false,

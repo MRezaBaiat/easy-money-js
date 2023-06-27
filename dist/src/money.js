@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.money = exports.Money = void 0;
-const js_big_decimal_1 = require("js-big-decimal");
+const js_big_decimal_1 = __importDefault(require("js-big-decimal"));
 const utils_1 = require("./utils");
 class Money {
     constructor(amount, currency, immutable) {
