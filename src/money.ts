@@ -2,8 +2,9 @@
 import BigDecimal from 'js-big-decimal';
 import { RoundingModes } from 'js-big-decimal/dist/node/roundingModes';
 import { reversePair } from './utils';
+import { RateSource } from '../index';
 
-type CurrenciesType = string;
+type CurrenciesType = any;
 
 // TODO: limit to Money & string after fixed the types for DECIMAL & BIGINT
 type AmountType = Money<CurrenciesType> | string | number;
@@ -30,6 +31,8 @@ export class Money<MCT extends CurrenciesType = undefined> {
   private currency: MCT;
 
   private readonly immutable: boolean;
+
+  public static rateSource: RateSource;
 
   constructor(amount: AmountType, currency?: MCT, immutable?: boolean) {
     this.amount = Money.toStringValue(amount);
@@ -164,10 +167,13 @@ export class Money<MCT extends CurrenciesType = undefined> {
     }
 
     if (!rate) {
-      rate = await clientService.request(
-        InternalEventsEnum.RATE_SERVICE.RATE.GET,
-        { pair },
-      );
+      if (!Money.rateSource) {
+        throw new Error(
+          'to convert currencies into different ones we need a rate source first , please set it by calling setRateSource() ',
+        );
+      }
+
+      rate = await Money.rateSource.getRate(pair);
     }
 
     const c = this.cloneIfNeeded();

@@ -1,3 +1,5 @@
-export * from './src/lock.decorator';
-export * from './src/lock.module';
-export * from './src/lock.service';
+export * from './src/money';
+export interface RateSource {
+    getRate(pair: string): Promise<number>;
+}
+export declare function setRateSource(rateSource: RateSource): void;
