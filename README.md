@@ -1,4 +1,4 @@
-## NestJS FIFO Lock
+## Easy Money JS
 
 A tool to simplify working with (big) money maths and converting them into different currencies
 ## Installation
